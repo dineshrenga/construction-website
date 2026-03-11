@@ -5,13 +5,13 @@ import { Check } from "lucide-react"
 export default function FurnitureHero() {
   return (
     <section className="relative min-h-[calc(100vh-80px)] bg-white overflow-hidden flex flex-col pb-10">
-      <div className="relative mx-6 mt-5 flex-grow hero-cutout-container bg-[#9b9487]/20 overflow-hidden flex flex-col justify-center">
+      <div className="relative mx-6 mt-5 flex-grow hero-cutout-container overflow-hidden flex flex-col justify-center">
         {/* Background Texture/Image (Subtle) */}
-        <div className="absolute inset-0 z-0 bg-black opacity-50">
+        <div className="absolute inset-0 z-0 opacity-50">
           <img
-            src="/interior_hero.png"
+            src="/fur.png"
             alt="Interior Context"
-            className="w-full h-full object-cover grayscale opacity-20"
+            className="w-full h-full"
           />
         </div>
 
