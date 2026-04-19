@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description: "Building the future with excellence and precision. Leading construction firm specializing in industrial, commercial, and residential projects.",
 };
 
+import { QuoteProvider } from "@/context/QuoteContext";
+import GlobalQuote from "@/components/GlobalQuote";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,10 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+        <QuoteProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <GlobalQuote />
+        </QuoteProvider>
       </body>
     </html>
   );

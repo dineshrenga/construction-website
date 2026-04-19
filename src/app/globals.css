@@ -107,9 +107,12 @@
   }
 
    .hero-cutout-container {
-     border-radius: 2rem 2rem 2rem 2rem;
-    overflow: hidden;
-  }
+     border-radius: 1rem;
+     @media (min-width: 768px) {
+       border-radius: 2rem;
+     }
+     overflow: hidden;
+   }
 
   .text-jagsan-dark {
     color: #0d1117;
@@ -133,10 +136,19 @@
   @apply absolute -bottom-1 left-1/2 w-1.5 h-1.5 -translate-x-1/2 rounded-full bg-primary;
 }
 
-/* Specific logo font-style */
-.jagsan-logo-text {
-  font-family: var(--font-sans);
-  font-style: italic;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-}
+  /* Specific logo font-style */
+  .jagsan-logo-text {
+    font-family: var(--font-sans);
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+

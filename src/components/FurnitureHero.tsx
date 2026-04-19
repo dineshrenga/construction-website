@@ -1,12 +1,14 @@
 "use client"
 
 import { Check } from "lucide-react"
+import { useQuote } from "@/context/QuoteContext"
 
 export default function FurnitureHero() {
+  const { openModal } = useQuote()
+
   return (
     <section className="relative min-h-[calc(100vh-80px)] bg-white overflow-hidden flex flex-col pb-10">
-      <div className="relative mx-6 mt-5 flex-grow hero-cutout-container overflow-hidden flex flex-col justify-center">
-        {/* Background Texture/Image (Subtle) */}
+      <div className="relative mx-2 md:mx-6 mt-5 flex-grow hero-cutout-container overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 z-0 opacity-50">
           <img
             src="/fur.png"
@@ -15,7 +17,7 @@ export default function FurnitureHero() {
           />
         </div>
 
-        <div className="relative z-10 w-full max-w-[1536px] mx-auto px-10 lg:px-20 py-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+        <div className="relative z-10 w-full max-w-[1536px] mx-auto px-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
 
           {/* Main Furniture Piece on Left */}
           <div className="flex-1 w-full animate-in fade-in slide-in-from-left duration-1000 relative">
@@ -32,11 +34,11 @@ export default function FurnitureHero() {
           <div className="flex-1 text-[#0d1117] animate-in fade-in slide-in-from-right duration-1000">
             <div className="space-y-8 max-w-xl">
               <div className="space-y-4">
-                <h1 className="text-6xl font-black leading-[0.9] tracking-tighter">
+                <h1 className="text-4xl font-medium">
                   Design Comfort for <br />
                   <span className="text-[#f37021]">Every Space</span>
                 </h1>
-                <p className="text-xl text-gray-700 leading-relaxed font-bold tracking-tight">
+                <p className="text-xl text-gray-700 font-medium tracking-tight">
                   Designed for durability, comfort and modern aesthetics. Quality craftsmanship for your dream home.
                 </p>
               </div>
@@ -56,7 +58,10 @@ export default function FurnitureHero() {
                 </li>
               </ul>
 
-              <button className="px-10 py-4 rounded-2xl border-2 border-[#f37021] text-[#f37021] font-black text-xl hover:bg-[#f37021] hover:text-white transition-all shadow-2xl shadow-[#f37021]/10 active:scale-95">
+              <button 
+                onClick={openModal}
+                className="px-10 py-4 rounded-2xl border-2 border-[#f37021] text-[#f37021] font-black text-xl hover:bg-[#f37021] hover:text-white transition-all shadow-2xl shadow-[#f37021]/10 active:scale-95 mb-4 md:mb-0"
+              >
                 Get Custom Design
               </button>
             </div>

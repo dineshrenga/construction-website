@@ -38,7 +38,7 @@ export default function DesignPackagesHero() {
     <section className="relative min-h-[calc(100vh-80px)] bg-white overflow-hidden flex flex-col">
       {/* The Header Pill Space */}
  
-      <div className="relative mx-6 mt-5 flex-grow hero-cutout-container bg-[#0d1117] overflow-hidden flex flex-col justify-center">
+      <div className="relative mx-1 md:mx-6 mt-5 flex-grow hero-cutout-container bg-[#0d1117] overflow-hidden flex flex-col justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
@@ -49,11 +49,11 @@ export default function DesignPackagesHero() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-transparent to-[#0d1117]" />
         </div>
 
-        <div className="relative z-10 w-full max-w-[1536px] mx-auto px-10 py-20">
+        <div className="relative z-10 w-full max-w-[1536px] mx-auto px-4 md:px-10 py-22">
           <div className="text-center mb-12 space-y-4 animate-in fade-in slide-in-from-top duration-1000">
-            <h1 className="text-5xl md:text-6xl font-black text-white tracking-tighter leading-none mb-4">
-              Our Home Construction <br />
-              <span className="text-[#f37021]">Packages</span>
+            <h1 className="text-2xl md:text-4xl font-black text-white tracking-tighter leading-none mb-4">
+              Our Home Construction 
+              <span className="text-[#f37021]"> Packages</span>
             </h1>
             <p className="text-gray-300 max-w-2xl mx-auto text-lg font-bold tracking-tight">
               Tailored building plans to suit every lifestyle and budget.
@@ -64,7 +64,7 @@ export default function DesignPackagesHero() {
             {packages.map((pkg, i) => (
               <div
                 key={i}
-                className="glass-form rounded-[2.5rem] p-8 flex flex-col items-center text-center group hover:scale-[1.02] transition-all duration-500 animate-in fade-in slide-in-from-bottom duration-1000"
+                className="glass-form rounded-[2.5rem] p-4 md:p-8 flex flex-col items-center text-center group hover:scale-[1.02] transition-all duration-500 animate-in fade-in slide-in-from-bottom duration-1000"
                 style={{ animationDelay: `${i * 150}ms` }}
               >
                 <h3 className="text-[#f37021] text-2xl font-black mb-1">{pkg.title}</h3>

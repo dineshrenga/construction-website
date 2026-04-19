@@ -1,5 +1,9 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import { useQuote } from "@/context/QuoteContext"
 
 const Logo = () => (
   <div className="flex items-center gap-2">
@@ -8,13 +12,17 @@ const Logo = () => (
       <div className="absolute inset-1 rounded-full border-4 border-[#f37021]" />
     </div>
     <span className="text-2xl font-black tracking-tight text-white italic jagsan-logo-text flex">
-      <span className="text-white">Jag</span>
-      <span className="text-[#f37021]">san</span>
+      <span className="text-[#f37021]">D</span>
+      <span className="text-white">ine</span>
+      <span className="text-[#f37021]">C</span>
+      <span className="text-white">onstruction</span>
     </span>
   </div>
 )
 
 export default function Footer() {
+  const { openModal } = useQuote()
+
   return (
     <footer className="bg-[#0b0f15] text-white pt-20 pb-10">
       <div className="max-w-[1536px] mx-auto px-10">
@@ -48,19 +56,20 @@ export default function Footer() {
             <h4 className="text-lg font-bold border-b border-[#f37021] w-fit mb-6 pb-2">Quick Links</h4>
             <ul className="space-y-3 text-sm text-gray-400">
               <li><Link href="/" className="hover:text-[#f37021] transition-colors">Home</Link></li>
-              <li><Link href="#" className="hover:text-[#f37021] transition-colors">Design packages</Link></li>
-              <li><Link href="#" className="hover:text-[#f37021] transition-colors">Interior</Link></li>
-              <li><Link href="#" className="hover:text-[#f37021] transition-colors">Contact us</Link></li>
+              <li><Link href="/design-packages" className="hover:text-[#f37021] transition-colors">Design packages</Link></li>
+              <li><Link href="/interior" className="hover:text-[#f37021] transition-colors">Interior</Link></li>
+              <li><Link href="/furniture" className="hover:text-[#f37021] transition-colors">Furniture</Link></li>
+              <li><Link href="/contact" className="hover:text-[#f37021] transition-colors">Contact us</Link></li>
             </ul>
           </div>
 
           <div className="lg:col-span-2 space-y-6">
             <h4 className="text-lg font-bold border-b border-[#f37021] w-fit mb-6 pb-2">Our Services</h4>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li><Link href="#" className="hover:text-[#f37021] transition-colors">Residential</Link></li>
-              <li><Link href="#" className="hover:text-[#f37021] transition-colors">Commercial</Link></li>
-              <li><Link href="#" className="hover:text-[#f37021] transition-colors">Interior Design</Link></li>
-              <li><Link href="#" className="hover:text-[#f37021] transition-colors">Renovation</Link></li>
+              <li><Link href="/interior" className="hover:text-[#f37021] transition-colors">Residential</Link></li>
+              <li><Link href="/interior" className="hover:text-[#f37021] transition-colors">Commercial</Link></li>
+              <li><Link href="/interior" className="hover:text-[#f37021] transition-colors">Interior Design</Link></li>
+              <li><Link href="/furniture" className="hover:text-[#f37021] transition-colors">Renovation</Link></li>
             </ul>
           </div>
 
@@ -74,14 +83,17 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-[#f37021] shrink-0" />
-                  <span>Call Now: +91 6543218760</span>
+                  <span>Call Now: +91 9876543210</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-[#f37021] shrink-0" />
-                  <span>jagsanhouse82@gmail.com</span>
+                  <span>dineconstruction@gmail.com</span>
                 </li>
               </ul>
-              <button className="w-full py-3 rounded-lg border border-[#f37021] text-[#f37021] font-bold hover:bg-[#f37021] hover:text-white transition-all">
+              <button 
+                onClick={openModal}
+                className="w-full py-3 rounded-lg border border-[#f37021] text-[#f37021] font-bold hover:bg-[#f37021] hover:text-white transition-all"
+              >
                 Get a Free Quote
               </button>
             </div>
@@ -90,7 +102,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Jagsanhouse. All rights reserved.
+            © <span suppressHydrationWarning>{new Date().getFullYear()}</span> dineConstruction. All rights reserved.
           </p>
           <div className="flex gap-4">
             {[Instagram, Facebook, Linkedin].map((Icon, i) => (

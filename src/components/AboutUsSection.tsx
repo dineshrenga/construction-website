@@ -11,7 +11,7 @@ export default function AboutUsSection() {
 
   return (
     <section className="py-10 bg-white overflow-hidden">
-      <div className="max-w-[1536px] mx-auto px-10">
+      <div className="max-w-[1536px] mx-auto px-2 md:px-10">
         <div className="text-center">
           <h2 className="text-4xl md:text-5xl font-black mb-4">
             About <span className="text-[#f37021]">Us</span>
@@ -36,23 +36,23 @@ export default function AboutUsSection() {
           {/* Right Side: Content and Stats */}
           <div className="lg:w-2/3 space-y-12 mt-10">
             <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl text-center font-black leading-tight text-[#0d1117]">
+              <h3 className="text-xl md:text-4xl text-center font-black leading-tight text-[#0d1117]">
                 Building Excellence. Delivering Trust. <br />
                 <span className="text-[#0d1117]/60">Your Dream Project Starts</span> With Us.
               </h3>
 
-              <div className="bg-[#FFF2E2] w-full px-20 py-10 rounded-r-[2rem]">
-                <div className="grid grid-cols-3 gap-8 p-10 bg-white rounded-[3rem] border border-[#f37021]/10">
+              <div className="bg-[#FFF2E2] w-full px-2 md:px-20 py-10 rounded-r-[2rem]">
+                <div className="grid grid-cols-3 gap-8 p-2 md:p-10 bg-white rounded-[1rem] md:rounded-[3rem] border border-[#f37021]/10">
                   {stats.map((stat, index) => (
                     <div key={index} className="text-center space-y-2">
-                      <p className="text-5xl font-black text-[#f37021] tracking-tighter">{stat.value}</p>
-                      <p className="text-[10px] md:text-xs font-black text-black/70 uppercase tracking-widest">
+                      <p className="text-xl md:text-5xl font-black text-[#f37021] tracking-tighter">{stat.value}</p>
+                      <p className="text-[8px] md:text-xs font-black text-black/70 uppercase tracking-widest">
                         {stat.label}
                       </p>
                     </div>
                   ))}
                 </div>
-                <p className="text-xl text-gray-600 leading-relaxed font-medium mt-6">
+                <p className="text-sm md:text-xl text-gray-600 leading-relaxed font-medium mt-6">
                   We specialize in building durable, modern, and efficient spaces tailored to your needs.
                   Our commitment to quality, transparency, and timely delivery makes us the preferred
                   construction partner for residential and commercial projects.

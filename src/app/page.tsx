@@ -41,10 +41,10 @@ export default function Home() {
       <HeroSection />
       <AboutUsSection />
 
-      <section id="services" className="py-10 bg-white">
+      <section id="services" className="md:py-10 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0d1117]">
+          <div className="text-center md:mb-16 mb-6 space-y-4">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1117]">
               Our Core Construction <span className="text-[#f37021]">Services</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto font-medium">
@@ -54,17 +54,17 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, i) => (
-              <div key={i} className="relative aspect-[16/10] rounded-[2rem] overflow-hidden group cursor-pointer shadow-lg">
+              <div key={i} className="relative aspect-[16/10] md:rounded-[2rem] rounded-lg overflow-hidden group cursor-pointer shadow-lg">
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="absolute inset-0 w-full h-full group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-10 flex flex-col justify-end items-center text-center">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent md:p-10 p-2 flex flex-col justify-end items-center text-center">
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-6 shadow-xl">
                     <service.icon className="w-6 h-6 text-[#f37021]" />
                   </div>
-                  <h3 className="text-[#f37021] text-2xl font-bold mb-3">{service.title}</h3>
+                  <h3 className="text-[#f37021] text-2xl font-bold md:mb-3">{service.title}</h3>
                   <p className="text-white/80 text-sm max-w-sm mb-8 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0 text-gray-200">
                     {service.description}
                   </p>

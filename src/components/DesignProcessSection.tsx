@@ -12,8 +12,8 @@ const designProcess = [
 export default function DesignProcessSection() {
   return (
     <section className="py-10 bg-white">
-      <div className="max-w-[1536px] mx-auto px-10">
-        <div className="text-center mb-20 space-y-4">
+      <div className="max-w-[1536px] mx-auto px-4 md:px-10">
+        <div className="text-center mb-10 md:mb-20 space-y-4">
           <h2 className="text-4xl md:text-5xl font-black text-[#0d1117]">
             Our <span className="text-[#f37021]">Design</span>
           </h2>
@@ -26,7 +26,7 @@ export default function DesignProcessSection() {
           {designProcess.map((step, i) => (
             <div
               key={i}
-              className="relative aspect-[4/5] h-[350px] w-[300px] rounded-[2rem] overflow-hidden group cursor-pointer transition-all duration-700 mx-auto"
+              className="relative aspect-[4/5] h-full md:h-[350px] w-full md:w-[300px] rounded-[2rem] overflow-hidden group cursor-pointer transition-all duration-700 mx-auto"
             > 
               <img
                 src={step.image}

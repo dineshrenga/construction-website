@@ -23,10 +23,10 @@ export default function InteriorGallery() {
     : galleryItems.filter(item => item.category === activeCategory)
 
   return (
-    <section className="py-10 bg-white">
-      <div className="max-w-[1536px] mx-auto px-10">
+    <section className="py-4 md:py-10 bg-white">
+      <div className="max-w-[1536px] mx-auto px-4 md:px-10">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-black text-[#0d1117]">
+          <h2 className="text-3xl md:text-5xl font-black text-[#0d1117]">
             Crafting Spaces That <span className="text-[#f37021]">Inspire</span>
           </h2>
           <p className="text-gray-500 max-w-3xl mx-auto font-bold text-lg">
@@ -35,12 +35,12 @@ export default function InteriorGallery() {
         </div>
 
         {/* Categories / Tabs */}
-        <div className="flex flex-wrap gap-4 mb-10">
+        <div className="flex overflow-x-auto md:flex-wrap gap-4 mb-10 pb-4 md:pb-0 scrollbar-hide">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-8 py-2.5 rounded-xl text-sm font-black transition-all border-2 ${activeCategory === cat
+              className={`whitespace-nowrap shrink-0 px-8 py-2.5 rounded-xl text-sm font-black transition-all border-2 ${activeCategory === cat
                 ? "bg-[#f37021] border-[#f37021] text-white shadow-lg shadow-[#f37021]/30"
                 : "bg-white border-gray-200 text-gray-700 hover:border-[#f37021] hover:text-[#f37021]"
                 }`}
@@ -51,10 +51,10 @@ export default function InteriorGallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4 md:gap-y-12">
           {filteredItems.map((item, i) => (
             <div key={i} className="group cursor-pointer">
-              <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-6 shadow-xl border border-gray-100">
+              <div className="relative aspect-[4/3] rounded-2xl md:rounded-[2.5rem] overflow-hidden mb-6 shadow-xl border border-gray-100">
                 <img
                   src={item.image}
                   alt={item.title}

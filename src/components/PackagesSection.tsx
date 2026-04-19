@@ -26,7 +26,7 @@ export default function PackagesSection() {
     <section className="py-10 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-10 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0d1117]">
+          <h2 className="text-2xl md:text-5xl font-extrabold text-[#0d1117]">
             Our Home Construction <span className="text-[#f37021]">Packages</span>
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto font-medium">
@@ -36,7 +36,7 @@ export default function PackagesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {packages.map((pkg, i) => (
-            <div key={i} className="relative aspect-[4/5] rounded-[2rem] overflow-hidden group cursor-pointer shadow-lg">
+            <div key={i} className="relative md:aspect-[4/5] aspect-[1/1] md:rounded-[2rem] rounded-lg overflow-hidden group cursor-pointer shadow-lg">
               <img
                 src={pkg.image}
                 alt={pkg.title}

@@ -1,6 +1,7 @@
 "use client"
 
 import { Check } from "lucide-react"
+import { useQuote } from "@/context/QuoteContext"
 
 const packages = [
   {
@@ -30,11 +31,13 @@ const packages = [
 ]
 
 export default function ArchitecturalPackages() {
+  const { openModal } = useQuote()
+
   return (
     <section className="py-10 bg-white">
-      <div className="max-w-[1536px] mx-auto px-10">
+      <div className="max-w-[1536px] mx-auto px-4 md:px-10">
         <div className="text-center mb-10 space-y-3">
-          <h2 className="text-4xl md:text-5xl font-black text-[#0d1117]">
+          <h2 className="text-2xl md:text-5xl font-black text-[#0d1117]">
             Architectural Design <span className="text-[#f37021]">Packages</span>
           </h2>
           <p className="text-gray-500 font-bold">
@@ -87,7 +90,10 @@ export default function ArchitecturalPackages() {
             <p className="text-gray-400 text-xs font-medium italic">Site Supervision & Construction Support not included</p>
           </div>
 
-          <button className="px-12 py-3 rounded-xl border border-[#f37021] text-[#f37021] font-black uppercase tracking-widest text-sm hover:bg-[#f37021] hover:text-white transition-all">
+          <button 
+            onClick={openModal}
+            className="px-12 py-3 rounded-xl border border-[#f37021] text-[#f37021] font-black uppercase tracking-widest text-sm hover:bg-[#f37021] hover:text-white transition-all"
+          >
             Get a Free Quote
           </button>
         </div>

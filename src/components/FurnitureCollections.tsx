@@ -29,10 +29,10 @@ const collections = [
 
 export default function FurnitureCollections() {
   return (
-    <section className="py-10 bg-white">
-      <div className="max-w-[1536px] mx-auto px-10">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-black text-[#0d1117]">
+    <section className="py-4 md:py-10 bg-white">
+      <div className="max-w-[1536px] mx-auto px-4 md:px-10">
+        <div className="text-center mb-4 md:mb-16 space-y-4">
+          <h2 className="text-2xl md:text-5xl font-black text-[#0d1117]">
             Our <span className="text-[#f37021]">Furniture Collections</span>
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto font-bold text-lg">
@@ -44,7 +44,7 @@ export default function FurnitureCollections() {
           {collections.map((item, i) => (
             <div
               key={i}
-              className="bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-xl group hover:-translate-y-2 transition-all duration-500"
+              className="bg-white md:rounded-[2.5rem] rounded-2xl overflow-hidden border border-gray-100 shadow-xl group hover:-translate-y-2 transition-all duration-500"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img

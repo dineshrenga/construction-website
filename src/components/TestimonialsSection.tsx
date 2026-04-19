@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Star, Play, ChevronLeft, ChevronRight, X } from "lucide-react"
+import { Star, Play, X } from "lucide-react"
+import { useQuote } from "@/context/QuoteContext"
 
 const testimonials = [
   {
@@ -9,6 +10,7 @@ const testimonials = [
     role: "Villa Construction - Chennai",
     text: "The team delivered exactly what we imagined. Quality and timing were perfect.",
     rating: 5.0,
+    gender: "male" as const,
     image: "/avatar_male_arun_1773035026174.png",
     videoUrl: "/testimonial_video_1.mp4"
   },
@@ -17,6 +19,7 @@ const testimonials = [
     role: "Interior & Renovation - Chennai",
     text: "Smooth process from design to handover. Highly recommended!",
     rating: 5.0,
+    gender: "female" as const,
     image: "/avatar_female_divya_1773035039932.png",
     videoUrl: "/testimonial_video_2.mp4"
   },
@@ -25,13 +28,53 @@ const testimonials = [
     role: "Independent House - Chennai",
     text: "Transparent pricing and excellent workmanship.",
     rating: 5.0,
+    gender: "male" as const,
     image: "/avatar_male_karthik_1773035057842.png",
     videoUrl: "/testimonial_video_3.mp4"
   },
 ];
 
 export default function TestimonialsSection() {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const { openModal } = useQuote()
+  const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
+
+  const handleSpeech = (text: string, index: number, gender: 'male' | 'female') => {
+    // Stop if already speaking this one
+    if (speakingIndex === index) {
+      window.speechSynthesis.cancel();
+      setSpeakingIndex(null);
+      return;
+    }
+
+    // Cancel previous speech
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Select voice based on gender
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find(v => {
+      const name = v.name.toLowerCase();
+      if (gender === 'female') {
+        return name.includes('female') || name.includes('samantha') || name.includes('zira') || name.includes('victoria') || name.includes('google us english');
+      } else {
+        return name.includes('male') || name.includes('david') || name.includes('alex') || name.includes('prakash') || name.includes('google uk english male');
+      }
+    });
+
+    if (voice) {
+      utterance.voice = voice;
+    }
+
+    utterance.rate = 0.9; // Slightly slower for better clarity
+    utterance.pitch = gender === 'female' ? 1.2 : 1; // Adjust pitch for female voice
+    
+    utterance.onstart = () => setSpeakingIndex(index);
+    utterance.onend = () => setSpeakingIndex(null);
+    utterance.onerror = () => setSpeakingIndex(null);
+
+    window.speechSynthesis.speak(utterance);
+  };
 
   return (
     <section className="py-10 bg-white overflow-hidden">
@@ -50,7 +93,7 @@ export default function TestimonialsSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
               <div key={i} className="bg-[#0d1117] rounded-[1.5rem] overflow-hidden relative group/card shadow-xl">
-                {/* Background Image / Placeholder for video */}
+                {/* Background Image / Placeholder */}
                 <div className="relative aspect-square overflow-hidden">
                   <img
                     src={t.image}
@@ -59,10 +102,22 @@ export default function TestimonialsSection() {
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
-                      onClick={() => setActiveVideo(t.videoUrl)}
-                      className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white cursor-pointer hover:bg-[#f37021] hover:border-[#f37021] transition-all"
+                      onClick={() => handleSpeech(t.text, i, t.gender)}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                        speakingIndex === i 
+                          ? "bg-[#f37021] border-[#f37021] text-white scale-110 shadow-[0_0_20px_rgba(243,112,33,0.5)]" 
+                          : "bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-[#f37021] hover:border-[#f37021] shadow-lg"
+                      }`}
                     >
-                      <Play className="w-4 h-4 fill-current" />
+                      {speakingIndex === i ? (
+                        <div className="flex gap-1 items-center">
+                          <span className="w-1 h-3 bg-white animate-bounce [animation-delay:-0.3s]" />
+                          <span className="w-1 h-4 bg-white animate-bounce [animation-delay:-0.15s]" />
+                          <span className="w-1 h-3 bg-white animate-bounce" />
+                        </div>
+                      ) : (
+                        <Play className="w-5 h-5 fill-current ml-1" />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -70,8 +125,8 @@ export default function TestimonialsSection() {
                 {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 pt-12 bg-gradient-to-t from-black via-black/90 to-transparent">
                   <div className="flex gap-1 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-[#f37021] text-[#f37021]" />
+                    {[...Array(5)].map((_, starIdx) => (
+                      <Star key={starIdx} className="w-3 h-3 fill-[#f37021] text-[#f37021]" />
                     ))}
                     <span className="text-white text-xs font-bold ml-1">{t.rating.toFixed(1)}</span>
                   </div>
@@ -86,33 +141,12 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Video Modal */}
-        {activeVideo && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-20">
-            <div
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-              onClick={() => setActiveVideo(null)}
-            />
-            <div className="relative w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all z-50"
-              >
-                <X className="w-6 h-6" />
-              </button>
-              <video
-                src={activeVideo}
-                autoPlay
-                controls
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
-        )}
-
         <div className="text-center mt-8 space-y-4">
           <h4 className="text-lg font-bold text-[#0d1117]">Start Your Project With Us Today</h4>
-          <button className="px-8 py-2.5 rounded-lg border-2 border-[#f37021] text-[#f37021] font-bold hover:bg-[#f37021] hover:text-white transition-all shadow-lg hover:shadow-[#f37021]/20 text-sm">
+          <button 
+            onClick={openModal}
+            className="px-8 py-2.5 rounded-lg border-2 border-[#f37021] text-[#f37021] font-bold hover:bg-[#f37021] hover:text-white transition-all shadow-lg hover:shadow-[#f37021]/20 text-sm"
+          >
             Get a Free Quote
           </button>
         </div>
